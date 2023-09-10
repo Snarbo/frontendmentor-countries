@@ -1,0 +1,101 @@
+body {
+  font-family: "Nunito Sans", sans-serif; }
+
+.countries.light {
+  background-color: #fafafa; }
+
+.countries.dark {
+  background-color: #202c36; }
+
+.light .countries-list-container > p {
+  color: #111517; }
+
+.dark .countries-list-container > p {
+  color: #fff; }
+
+.light .countries-detail-navigation a {
+  background-color: #fff;
+  color: #111517; }
+
+.dark .countries-detail-navigation a {
+  background-color: #2b3844;
+  color: #fff; }
+
+.light .countries-detail .countries-item-details * {
+  color: #111517; }
+
+.dark .countries-detail .countries-item-details * {
+  color: #fff; }
+
+.light .countries-detail .countries-item-borders li {
+  background-color: #fff; }
+
+.dark .countries-detail .countries-item-borders li {
+  background-color: #2b3844; }
+
+.light .countries-filter-country {
+  background-color: #fff; }
+
+.dark .countries-filter-country {
+  background-color: #2b3844; }
+
+.light .countries-filter-country input {
+  color: #111517; }
+
+.dark .countries-filter-country input {
+  color: #fff; }
+
+.light .countries-filter-country input::placeholder {
+  color: #c4c4c4; }
+
+.countries-filter-country input::placeholder.dark .countries-filter-country input::placeholder {
+  color: #fff; }
+
+.light .countries-filter-region p {
+  color: #111517; }
+
+.dark .countries-filter-region p {
+  color: #fff; }
+
+.light .countries-filter-region .head {
+  background-color: #fff; }
+
+.dark .countries-filter-region .head {
+  background-color: #2b3844; }
+
+.countries-filter-region .body {
+  top: calc(100% + 4px); }
+  .light .countries-filter-region .body {
+    background-color: #fff; }
+  .dark .countries-filter-region .body {
+    background-color: #2b3844; }
+
+.light .country-item-body * {
+  color: #111517; }
+
+.dark .country-item-body * {
+  color: #fff; }
+
+.light .country-item-body {
+  background-color: #fff; }
+
+.dark .country-item-body {
+  background-color: #2b3844; }
+
+.light .header-logo h1 {
+  color: #111517; }
+
+.dark .header-logo h1 {
+  color: #fff; }
+
+.light .header .dark-light-toggle span {
+  color: #111517; }
+
+.dark .header .dark-light-toggle span {
+  color: #fff; }
+
+.light .header {
+  background-color: #fff; }
+
+.dark .header {
+  background-color: #2b3844; }

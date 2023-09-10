@@ -1,0 +1,57 @@
+.countries {
+  &.light {
+    background-color: $color-beige;
+  }
+
+  &.dark {
+    background-color: $color-dark-grey;
+  }
+
+  &-list-container > p {
+    .light & {
+      color: $color-black;
+    }
+
+    .dark & {
+      color: $color-white;
+    }
+  }
+
+  &-detail {
+    &-navigation a {
+      .light & {
+        background-color: $color-white;
+        color: $color-black;
+      }
+
+      .dark & {
+        background-color: $color-grey;
+        color: $color-white;
+      }
+    }
+
+    .countries-item {
+      &-details {
+        * {
+          .light & {
+            color: $color-black;
+          }
+
+          .dark & {
+            color: $color-white;
+          }
+        }
+      }
+
+      &-borders li {
+        .light & {
+          background-color: $color-white;
+        }
+
+        .dark & {
+          background-color: $color-grey;
+        }
+      }
+    }
+  }
+}
