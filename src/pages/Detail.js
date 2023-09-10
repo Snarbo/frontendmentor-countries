@@ -14,18 +14,15 @@ const Detail = () => {
     if (country === undefined) navigate('/');
   }, [country, navigate]);
 
-  //
-
   const { currentTheme } = useStateContext();
-  const [countryCurrencies, setCountryCurrencies] = useState('');
-  const [countryLanguages, setCountryLanguages] = useState('');
-  const [countryBorders, setCountryBorders] = useState(country.borders || []);
+  const [countryCurrencies, setCountryCurrencies] = useState(country.currencies || '');
+  const [countryLanguages, setCountryLanguages] = useState(country.languages || '');
 
-  useEffect(() => {
-    if (country.currencies) setCountryCurrencies(country.currencies.map((currency) => currency.name).join(', '));
-    if (country.languages) setCountryLanguages(country.languages.map((language) => language.name).join(', '));
-    if (country.borders) setCountryBorders(countriesList.filter((country) => countryBorders.includes(country.alpha3Code)).map((country) => country.name));
-  }, [country.currencies, country.languages, country.borders, countryBorders]);
+  if (Array.isArray(countryCurrencies)) setCountryCurrencies(country.currencies.map((currency) => currency.name).join(', '));
+  if (Array.isArray(countryLanguages)) setCountryLanguages(country.languages.map((currency) => currency.name).join(', '));
+
+  const countryBorders = country.borders || [];
+  const updatedCountryBorders = countriesList.filter((country) => countryBorders.includes(country.alpha3Code)).map((country) => country.name);
 
   const backBgColor = currentTheme === 'light' ? '#111517' : '#fff';
 
@@ -95,19 +92,17 @@ const Detail = () => {
                     {countryCurrencies}
                   </p>
                 )}
-                {countryLanguages && (
-                  <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
-                    <b className="font-semibold">Languages: </b>
-                    {countryLanguages}
-                  </p>
-                )}
+                <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
+                  <b className="font-semibold">Languages: </b>
+                  {countryLanguages}
+                </p>
               </div>
             </div>
-            {countryBorders.length > 1 && (
+            {updatedCountryBorders.length > 1 && (
               <div className="countries-item-borders mt-8 lg:mt-[70px] lg:flex">
                 <h3 className="text-base font-semibold leading-6 lg:mt-1 lg:mr-4">Border Countries: </h3>
                 <ul className="flex flex-wrap mt-4 lg:flex-1 lg:mt-0 lg:mb-[-10px]">
-                  {countryBorders.map((country, idx) => (
+                  {updatedCountryBorders.map((country, idx) => (
                     <li className="mr-2.5 mb-2.5 py-2.5 px-[30px] text-xs font-light leading-none shadow-[0_0_4px_1px_rgba(0,0,0,0.1)] lg:text-sm lg:leading-none" key={idx}>
                       {country}
                     </li>
