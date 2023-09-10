@@ -1,0 +1,65 @@
+.countries-filter {
+  &-country {
+    .light & {
+      background-color: $color-white;
+    }
+
+    .dark & {
+      background-color: $color-grey;
+    }
+
+    input {
+      .light & {
+        color: $color-black;
+      }
+
+      .dark & {
+        color: $color-white;
+      }
+
+      &::placeholder {
+        .light & {
+          color: #c4c4c4;
+        }
+
+        &.dark & {
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  &-region {
+    p {
+      .light & {
+        color: $color-black;
+      }
+
+      .dark & {
+        color: $color-white;
+      }
+    }
+
+    .head {
+      .light & {
+        background-color: $color-white;
+      }
+
+      .dark & {
+        background-color: $color-grey;
+      }
+    }
+
+    .body {
+      top: calc(100% + 4px);
+
+      .light & {
+        background-color: $color-white;
+      }
+
+      .dark & {
+        background-color: $color-grey;
+      }
+    }
+  }
+}

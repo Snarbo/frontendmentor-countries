@@ -1,0 +1,21 @@
+.country-item {
+  &-body {
+    * {
+      .light & {
+        color: $color-black;
+      }
+
+      .dark & {
+        color: $color-white;
+      }
+    }
+
+    .light & {
+      background-color: $color-white;
+    }
+
+    .dark & {
+      background-color: $color-grey;
+    }
+  }
+}

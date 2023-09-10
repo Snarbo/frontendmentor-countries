@@ -1,0 +1,33 @@
+.header {
+  &-logo {
+    h1 {
+      .light & {
+        color: $color-black;
+      }
+
+      .dark & {
+        color: $color-white;
+      }
+    }
+  }
+
+  .dark-light-toggle {
+    span {
+      .light & {
+        color: $color-black;
+      }
+
+      .dark & {
+        color: $color-white;
+      }
+    }
+  }
+
+  .light & {
+    background-color: $color-white;
+  }
+
+  .dark & {
+    background-color: $color-grey;
+  }
+}
