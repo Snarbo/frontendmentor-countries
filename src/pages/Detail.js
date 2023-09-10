@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useStateContext } from '../store/Context';
 
@@ -14,12 +14,20 @@ const Detail = () => {
     if (country === undefined) navigate('/');
   }, [country, navigate]);
 
+  //
+
   const { currentTheme } = useStateContext();
+  const [countryCurrencies, setCountryCurrencies] = useState('');
+  const [countryLanguages, setCountryLanguages] = useState('');
+  const [countryBorders, setCountryBorders] = useState(country.borders || []);
+
+  useEffect(() => {
+    if (country.currencies) setCountryCurrencies(country.currencies.map((currency) => currency.name).join(', '));
+    if (country.languages) setCountryLanguages(country.languages.map((language) => language.name).join(', '));
+    if (country.borders) setCountryBorders(countriesList.filter((country) => countryBorders.includes(country.alpha3Code)).map((country) => country.name));
+  }, [country]);
+
   const backBgColor = currentTheme === 'light' ? '#111517' : '#fff';
-  const countryCurrencies = country.currencies.map((currency) => currency.name).join(', ');
-  const countryLanguages = country.languages.map((language) => language.name).join(', ');
-  const countryBorders = country.borders || [];
-  const borderCountries = countriesList.filter((country) => countryBorders.includes(country.alpha3Code)).map((country) => country.name);
 
   return (
     <div className="countries-detail pt-10 px-[30px] pb-[60px] min-h-screen lg:p-20">
@@ -43,47 +51,63 @@ const Detail = () => {
             <h2 className="countries-item-name text-[22px] font-extrabold lg:text-[32px]">{country.name}</h2>
             <div className="countries-item-facts mt-4 lg:grid lg:grid-cols-2 lg:gap-[115px] lg:mt-6">
               <div>
-                <p className="text-sm font-light leading-8 lg:text-base">
-                  <b className="font-semibold">Native Name: </b>
-                  {country.nativeName}
-                </p>
-                <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
-                  <b className="font-semibold">Population: </b>
-                  {country.population.toLocaleString()}
-                </p>
-                <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
-                  <b className="font-semibold">Region: </b>
-                  {country.region}
-                </p>
-                <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
-                  <b className="font-semibold">Sub Region: </b>
-                  {country.subregion}
-                </p>
-                <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
-                  <b className="font-semibold">Capital: </b>
-                  {country.capital}
-                </p>
+                {country.nativeName && (
+                  <p className="text-sm font-light leading-8 lg:text-base">
+                    <b className="font-semibold">Native Name: </b>
+                    {country.nativeName}
+                  </p>
+                )}
+                {country.population && (
+                  <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
+                    <b className="font-semibold">Population: </b>
+                    {country.population.toLocaleString()}
+                  </p>
+                )}
+                {country.region && (
+                  <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
+                    <b className="font-semibold">Region: </b>
+                    {country.region}
+                  </p>
+                )}
+                {country.subregion && (
+                  <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
+                    <b className="font-semibold">Sub Region: </b>
+                    {country.subregion}
+                  </p>
+                )}
+                {country.capital && (
+                  <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
+                    <b className="font-semibold">Capital: </b>
+                    {country.capital}
+                  </p>
+                )}
               </div>
               <div className="mt-8 lg:m-0">
-                <p className="text-sm font-light leading-8 lg:text-base">
-                  <b className="font-semibold">Top Level Domain: </b>
-                  {country.topLevelDomain}
-                </p>
-                <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
-                  <b className="font-semibold">Currencies: </b>
-                  {countryCurrencies}
-                </p>
-                <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
-                  <b className="font-semibold">Languages: </b>
-                  {countryLanguages}
-                </p>
+                {country.topLevelDomain && (
+                  <p className="text-sm font-light leading-8 lg:text-base">
+                    <b className="font-semibold">Top Level Domain: </b>
+                    {country.topLevelDomain}
+                  </p>
+                )}
+                {countryCurrencies && (
+                  <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
+                    <b className="font-semibold">Currencies: </b>
+                    {countryCurrencies}
+                  </p>
+                )}
+                {countryLanguages && (
+                  <p className="text-sm font-light leading-8 lg:mt-3 lg:text-base">
+                    <b className="font-semibold">Languages: </b>
+                    {countryLanguages}
+                  </p>
+                )}
               </div>
             </div>
-            {borderCountries.length > 1 && (
+            {countryBorders.length > 1 && (
               <div className="countries-item-borders mt-8 lg:mt-[70px] lg:flex">
                 <h3 className="text-base font-semibold leading-6 lg:mt-1 lg:mr-4">Border Countries: </h3>
                 <ul className="flex flex-wrap mt-4 lg:flex-1 lg:mt-0 lg:mb-[-10px]">
-                  {borderCountries.map((country, idx) => (
+                  {countryBorders.map((country, idx) => (
                     <li className="mr-2.5 mb-2.5 py-2.5 px-[30px] text-xs font-light leading-none shadow-[0_0_4px_1px_rgba(0,0,0,0.1)] lg:text-sm lg:leading-none" key={idx}>
                       {country}
                     </li>
