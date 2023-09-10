@@ -25,7 +25,7 @@ const Detail = () => {
     if (country.currencies) setCountryCurrencies(country.currencies.map((currency) => currency.name).join(', '));
     if (country.languages) setCountryLanguages(country.languages.map((language) => language.name).join(', '));
     if (country.borders) setCountryBorders(countriesList.filter((country) => countryBorders.includes(country.alpha3Code)).map((country) => country.name));
-  }, [country]);
+  }, [country.currencies, country.languages, country.borders, countryBorders]);
 
   const backBgColor = currentTheme === 'light' ? '#111517' : '#fff';
 
