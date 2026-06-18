@@ -22,7 +22,7 @@ const Detail = () => {
   if (Array.isArray(countryLanguages)) setCountryLanguages(country.languages.map((currency) => currency.name).join(', '));
 
   const countryBorders = country.borders || [];
-  const updatedCountryBorders = countriesList.filter((country) => countryBorders.includes(country.alpha3Code)).map((country) => country.name);
+  const updatedCountryBorders = countriesList.filter((country) => countryBorders.includes(country.alpha3Code)).map((country) => country);
 
   const backBgColor = currentTheme === 'light' ? '#111517' : '#fff';
 
@@ -103,9 +103,9 @@ const Detail = () => {
                 <h3 className="text-base font-semibold leading-6 lg:mt-1 lg:mr-4">Border Countries: </h3>
                 <ul className="flex flex-wrap mt-4 lg:flex-1 lg:mt-0 lg:mb-[-10px]">
                   {updatedCountryBorders.map((country, idx) => (
-                    <li className="mr-2.5 mb-2.5 py-2.5 px-[30px] text-xs font-light leading-none shadow-[0_0_4px_1px_rgba(0,0,0,0.1)] lg:text-sm lg:leading-none" key={idx}>
-                      {country}
-                    </li>
+                    <a className="mr-2.5 mb-2.5 py-2.5 px-[30px] text-xs font-light leading-none shadow-[0_0_4px_1px_rgba(0,0,0,0.1)] lg:text-sm lg:leading-none" key={idx} href={`/detail/${country.id}`}>
+                      {country.name}
+                    </a>
                   ))}
                 </ul>
               </div>
