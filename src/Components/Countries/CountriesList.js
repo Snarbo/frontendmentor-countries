@@ -5,7 +5,6 @@ import CountryItem from './CountryItem';
 
 const CountriesList = () => {
   const [countries, setCountries] = useState([]);
-  const [visibleItemCount, setVisibleItemCount] = useState(8);
   const [isLoading, setIsLoading] = useState(true);
   const { searchedCountry, selectedRegion } = useStateContext();
 
@@ -49,20 +48,6 @@ const CountriesList = () => {
     }
   }, [searchedCountry, selectedRegion, nameSearch, regionSearch, nameAndRegionSearch]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 && visibleItemCount < countries.length) {
-        setVisibleItemCount(visibleItemCount + 8);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [visibleItemCount, countries]);
-
   return (
     <section className="countries-list-container mt-8 px-10 lg:mt-12 lg:p-0">
       {isLoading ? (
@@ -71,7 +56,7 @@ const CountriesList = () => {
         <p className="font-extrabold text-lg">No results found.</p>
       ) : (
         <div className="countries-list grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {countries.slice(0, visibleItemCount).map((country) => (
+          {countries.map((country) => (
             <CountryItem key={country.id} id={country.id} flag={country.flag} name={country.name} population={country.population.toLocaleString()} region={country.region} capital={country.capital} />
           ))}
         </div>
